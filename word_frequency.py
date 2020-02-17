@@ -26,6 +26,20 @@ STOP_WORDS = [
 #         print(f"{file} does not exist!")
 #         exit(1)
 
+test = 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked.'
+test = test.lower()
+punc = '"!@#$%^&*()_-<>+=,./'
+newtest = ''
+for char in test:
+  if char not in punc:
+    newtest = newtest + char
 
-test = ['One morning, as Gregor Samsa was waking up from anxious dreams, he discovered that in bed he had been changed into a monstrous verminous bug. He lay on his armour-hard back and saw, as he lifted his head up a little, his brown, arched abdomen divided up into rigid bow-like sections. From this height the blanket, just about ready to slide off completely, could hardly stay in place. His numerous legs, pitifully thin in comparison to the rest of his circumference, flickered helplessly before his eyes. ']
+newtest = newtest.split(" ")
+
+finaltest = ''
+for each in newtest:
+    if each not in STOP_WORDS:
+        finaltest = finaltest + " " + each
+
+print(finaltest)
 
