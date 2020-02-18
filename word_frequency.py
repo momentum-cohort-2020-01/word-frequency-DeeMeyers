@@ -9,22 +9,26 @@ STOP_WORDS = [
 #     pass
 
 
-
 def print_word_freq(file):
-    #take original text input
-    input = 'place holder'
-    # input2 = 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked.'
-    #makes original text lowercase
+    with open(file) as f:
+        data = f.read()
+
+    # take original text input
+    input = data
+    print("input")
+    print(input)
+    # input = 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked.'
+    # makes original text lowercase
     input = input.lower()
-    #list of punctuation
+    # list of punctuation
     punc = '"!@#$%^&*()_-<>+=,./'
-    #removes punctuation
-    cleaninput = ''
+    # removes punctuation
+    cleaninput = ['']
     for char in input:
         if char not in punc:
             cleaninput = cleaninput + char
             cleaninput = cleaninput.split(" ")
-    #removes stop words
+    # removes stop words
     nostopinputclean = ""
     for each in cleaninput:
         if each not in STOP_WORDS:
@@ -41,14 +45,12 @@ def print_word_freq(file):
         if each not in dictList:
             dictList.append(each)
 
-
     dictList.pop(0)
     print(dictList)
 
-    dictionary = {}    
+    dictionary = {}
     for each in dictList:
-        dictionary.update({each: 0}) 
-
+        dictionary.update({each: 0})
 
     for each in nostopinputclean:
         dictionary[each] += 1
@@ -61,7 +63,7 @@ if __name__ == "__main__":
     from pathlib import Path
 
     parser = argparse.ArgumentParser(
-        description='Get the word frequency in a text file.')
+    description='Get the word frequency in a text file.')
     parser.add_argument('file', help='file to read')
     args = parser.parse_args()
 
@@ -71,3 +73,4 @@ if __name__ == "__main__":
     else:
         print(f"{file} does not exist!")
         exit(1)
+
