@@ -25,51 +25,47 @@ STOP_WORDS = [
 #     else:
 #         print(f"{file} does not exist!")
 #         exit(1)
-
-test = 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked.'
-test = test.lower()
+#take original text input
+input = 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked.'
+#makes original text lowercase
+input = input.lower()
+#list of punctuation
 punc = '"!@#$%^&*()_-<>+=,./'
-newtest = ''
-for char in test:
+#removes punctuation
+cleaninput = ''
+for char in input:
   if char not in punc:
-    newtest = newtest + char
-
-newtest = newtest.split(" ")
-
-finaltest = ""
-for each in newtest:
+    cleaninput = cleaninput + char
+cleaninput = cleaninput.split(" ")
+#removes stop words
+nostopinputclean = ""
+for each in cleaninput:
     if each not in STOP_WORDS:
-        finaltest = finaltest + " " + each
+        nostopinputclean = nostopinputclean + " " + each
 
-finaltest = finaltest.split(" ")
-finaltest.pop(0)
-print("finaltest: ")
-print(type(finaltest))
-print(finaltest)
+nostopinputclean = nostopinputclean.split(" ")
+nostopinputclean.pop(0)
+print("nostopinputclean: ")
+print(nostopinputclean)
 
-kafkastr = ['']
-# print(kafkastr)
-for each in finaltest:
-  if each not in kafkastr:
-    kafkastr.append(each)
-    # kafkastr = kafkastr.split(" ")
 
-# kafkastr = kafkastr.split(" ")
-kafkastr.pop(0)
-print(kafkastr)
+dictList = ['']
 
-kafkadict = {}    
-for each in kafkastr:
-  kafkadict.update({each: 0}) 
+for each in nostopinputclean:
+  if each not in dictList:
+    dictList.append(each)
 
-print(kafkadict)
 
-for each in finaltest:
-  kafkadict[each] += 1
+dictList.pop(0)
+print(dictList)
 
-print(kafkadict)
+dictionary = {}    
+for each in dictList:
+  dictionary.update({each: 0}) 
 
-# for each in finaltest:
-#   kafkadict[each] + 1
 
-#list command list(dict(....))
+for each in nostopinputclean:
+  dictionary[each] += 1
+
+print(dictionary)
+
