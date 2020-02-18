@@ -48,7 +48,6 @@ nostopinputclean.pop(0)
 print("nostopinputclean: ")
 print(nostopinputclean)
 
-
 dictList = ['']
 
 for each in nostopinputclean:
