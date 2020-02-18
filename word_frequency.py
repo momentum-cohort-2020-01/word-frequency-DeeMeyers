@@ -36,10 +36,40 @@ for char in test:
 
 newtest = newtest.split(" ")
 
-finaltest = ''
+finaltest = ""
 for each in newtest:
     if each not in STOP_WORDS:
         finaltest = finaltest + " " + each
 
+finaltest = finaltest.split(" ")
+finaltest.pop(0)
+print("finaltest: ")
+print(type(finaltest))
 print(finaltest)
 
+kafkastr = ['']
+# print(kafkastr)
+for each in finaltest:
+  if each not in kafkastr:
+    kafkastr.append(each)
+    # kafkastr = kafkastr.split(" ")
+
+# kafkastr = kafkastr.split(" ")
+kafkastr.pop(0)
+print(kafkastr)
+
+kafkadict = {}    
+for each in kafkastr:
+  kafkadict.update({each: 0}) 
+
+print(kafkadict)
+
+for each in finaltest:
+  kafkadict[each] += 1
+
+print(kafkadict)
+
+# for each in finaltest:
+#   kafkadict[each] + 1
+
+#list command list(dict(....))
