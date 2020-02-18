@@ -11,25 +11,32 @@ STOP_WORDS = [
 
 def print_word_freq(file):
     with open(file) as f:
-        data = f.read()
+        input = f.read()
 
     # take original text input
-    input = data
+    
     print("input")
     print(input)
     # input = 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked.'
     # makes original text lowercase
     input = input.lower()
+    input = input.replace('\n', '')
+
+    
     # list of punctuation
     punc = '"!@#$%^&*()_-<>+=,./'
+    
     # removes punctuation
-    cleaninput = ['']
+    cleaninput = ''
+    
     for char in input:
         if char not in punc:
             cleaninput = cleaninput + char
-            cleaninput = cleaninput.split(" ")
+    cleaninput = cleaninput.split(" ")
+    
     # removes stop words
     nostopinputclean = ""
+    
     for each in cleaninput:
         if each not in STOP_WORDS:
             nostopinputclean = nostopinputclean + " " + each
